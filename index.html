@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English janala</title>
      <link rel="icon" type="image/png" href="assets/logo.png">
+     
      <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
@@ -75,18 +76,22 @@
         <img src="assets/hero-student.png" alt="">
     </div>
 </section>
-<section class="h-[364px] flex flex-col justify-center items-center bg-[#ddd4d4]">
+<section class=" flex flex-col justify-center items-center">
     <h1 class="font-bold text-[36px]"><span class="text-[#00BCFF]">Let's</span> Learn Vocabularies</h1>
     <div class="flex gap-4 mt-5">
-        <button class="btn btn-outline btn-primary"><i class="fa-solid fa-book-open"></i>Lesson-1</button>
-        <button class="btn btn-outline btn-primary"><i class="fa-solid fa-book-open"></i>Lesson-2</button>
-        <button class="btn btn-outline btn-primary"><i class="fa-solid fa-book-open"></i>Lesson-3</button>
-        <button class="btn btn-outline btn-primary"><i class="fa-solid fa-book-open"></i>Lesson-4</button>
-        <button class="btn btn-outline btn-primary"><i class="fa-solid fa-book-open"></i>Lesson-5</button>
-        <button class="btn btn-outline btn-primary"><i class="fa-solid fa-book-open"></i>Lesson-6</button>
-        <button class="btn btn-outline btn-primary"><i class="fa-solid fa-book-open"></i>Lesson-7</button>
+        <button class="btn btn-outline btn-primary" onclick="loadlesson(1)"><i class="fa-solid fa-book-open"></i>Lesson-1</button>
+        <button class="btn btn-outline btn-primary" onclick="loadlesson(2)"><i class="fa-solid fa-book-open"></i>Lesson-2</button>
+        <button class="btn btn-outline btn-primary" onclick="loadlesson(3)"><i class="fa-solid fa-book-open"></i>Lesson-3</button>
+        <button class="btn btn-outline btn-primary" onclick="loadlesson(4)"><i class="fa-solid fa-book-open"></i>Lesson-4</button>
+        <button class="btn btn-outline btn-primary" onclick="loadlesson(5)"><i class="fa-solid fa-book-open"></i>Lesson-5</button>
+        <button class="btn btn-outline btn-primary" onclick="loadlesson(6)"><i class="fa-solid fa-book-open"></i>Lesson-6</button>
+        <button class="btn btn-outline btn-primary" onclick="loadlesson(7)"><i class="fa-solid fa-book-open"></i>Lesson-7</button>
+    </div>
+    <div id="lesson" class="grid grid-cols-3 gap-6 mt-4">
+
     </div>
 
 </section>
+<script src="english-janala.js"></script>
 </body>
 </html>
