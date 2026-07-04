@@ -22,6 +22,8 @@ function showdata(data){
         showcard();
         return;
     }
+    const lessoncontainer1=document.getElementById('or');
+    lessoncontainer1.innerHTML='';
       const lessoncontainer=document.getElementById('lesson');
     lessoncontainer.innerHTML='';
     data.forEach(element => {
