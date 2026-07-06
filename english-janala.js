@@ -29,11 +29,11 @@ function showdata(data){
     data.forEach(element => {
       
     const div = document.createElement("div");
-    div.innerHTML=`<div class="flex flex-col justify-center items-center w-[547px] h-[372px] border border-gray-300 rounded-md"> <h1 class="font-bold text-[32px]">${element.word}</h1> <p class="font-medium ext-[20px]">Meaning /Pronounciation</p> <h1 class="font-semibold text-[32px]">"${element.meaning}"</h1> <div class="flex justify-between w-[547px] px-20 mt-15" onclick="my_modal_5.showModal()"> <div class="bg-[#babdbe] p-2" onclick="document.getElementById('my_modal_5').showModal()"><i class="fa-solid fa-circle-info"></i>
+    div.innerHTML=`<div class="flex flex-col justify-center items-center w-[547px] h-[372px] border border-gray-300 rounded-md"> <h1 class="font-bold text-[32px]">${element.word}</h1> <p class="font-medium ext-[20px]">Meaning /Pronounciation</p> <h1 class="font-semibold text-[32px]">"${element.meaning}"</h1> <div class="flex justify-between w-[547px] px-20 mt-15" "> <div class="bg-[#babdbe] p-2" onclick="getvalue(${element.id})"><i class="fa-solid fa-circle-info"></i>
     
   
-    </i>
-    </div> <div class="bg-[#babdbe] p-2"><i class="fa-solid fa-volume-high"></i></div> </div> </div>
+    
+    </div> <div class="bg-[#babdbe] p-2 " onclick="pronounceWord('${element.word}')"><i class="fa-solid fa-volume-high"></i></div> </div> </div>
     `;
     lessoncontainer.appendChild(div);
 
@@ -75,9 +75,47 @@ function showcard(){
     lessoncontainer.appendChild(div);
     toggleLoading(false);
 }
+getvalue = (element) => {
+    fetch(`https://openapi.programming-hero.com/api/word/${element}`)
+    .then(res => res.json())
+    .then(data =>{
+        showdetails(data.data);
+    })
+};
+showdetails = (data) => {
+    const modal=document.getElementById('modaldis');
+    modal.innerHTML='';
+    const div = document.createElement("div");
+      div.innerHTML=`<h1 class="font-semibold text-[36px] text-[#000000] mb-6">${data.word} (<i class="fa-solid fa-microphone"></i>:${data.pronunciation})</h1>
+    <h1 class="font-semibold text-[24px] text-[#000000] mb-3">Meaning: </h1>
+    <p class="text-[24px] text-[#000000] mb-3">${data.meaning}</p>
+    <h1 class="font-semibold text-[24px] text-[#000000] mb-3">Example</h1>
+    <p class="text-[24px] text-[#000000] mb-3">${data.sentence}</p>
+    <h1 class="font-semibold text-[24px] text-[#000000] mb-3">সমার্থক শব্দ গুলো</h1>
+    <div id="synonyms" class="flex justify-center gap-4"></div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+       <button class="btn btn-primary">Complete Learning</button>
+      </form>
+    `
+    modal.appendChild(div);
 
+   for(let i=0; i<data.synonyms.length; i++){
+    const synonymDiv = document.createElement("div");
+    synonymDiv.innerHTML =`  <div class="bg-[#EDF7FF] border rounded-md w-fit p-2 text-[#000000] text-[20px] mb-8">${data.synonyms[i]}</div>`
+    document.getElementById('synonyms').appendChild(synonymDiv);
 
+    }
+    
+   my_modal_5.showModal();
+    
+}
 
-
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
 
 
