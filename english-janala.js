@@ -117,5 +117,22 @@ function pronounceWord(word) {
   utterance.lang = "en-US"; // English
   window.speechSynthesis.speak(utterance);
 }
-
-
+takeinput = () => {
+    const word = document.getElementById('search-input').value;
+    fetch(`https://openapi.programming-hero.com/api/words/all`)
+    .then(res => res.json())
+    .then(data => {
+        checkword(data.data, word);
+    });
+}   
+checkword = (data, word) => {
+    const lowerCaseWord = word.toLowerCase();
+   const result = data.filter(item =>
+    item.word.toLowerCase().startsWith(lowerCaseWord)
+);
+    if (result.length > 0) {
+        showdata(result);
+    } else {
+        alert("এই শব্দটি আমাদের ডাটাবেসে নেই।");
+    }
+}
